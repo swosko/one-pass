@@ -1,0 +1,9 @@
+<ion-view view-title="Accounts">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="acct in accounts" href="#/app/accounts/{{acct.Id}}">
+        {{acct.Name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
