@@ -1,31 +1,36 @@
-// Ionic Starter App
+// --------------
+// One Pass Front-End SPA (for mobile of course)
+// -------------------------------------------------
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js    // , 'onePass.services'
+// MOVE this into separate ENV file - not sure why it's not loading as desired
+
+// First things first, bring in the environment
+if (window) { Object.assign(__env, window.__env); }
+
 angular.module('onePass', ['ionic', 'onePass.controllers']) 
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (cordova.platformId === 'ios' && window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+    .run(function ($ionicPlatform) {
+      $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if (cordova.platformId === 'ios' && window.cordova && window.cordova.plugins.Keyboard) {
+          cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+          cordova.plugins.Keyboard.disableScroll(true);
 
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
-})
+        }
+        if (window.StatusBar) {
+          // org.apache.cordova.statusbar required
+          StatusBar.styleDefault();
+        }
+      });
+    })
 
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
+    .constant('__env', __env)
 
-    .state('app', {
+    .config(function ($stateProvider, $urlRouterProvider) {
+
+$stateProvider
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -94,7 +99,7 @@ angular.module('onePass', ['ionic', 'onePass.controllers'])
 
 
 /*
-ONE WAY TO HANDL EUNAUTH AND VERIFY
+ONE WAY TO HANDLE UNAUTH AND VERIFY
 .run(function($rootScope, $state, LoginService, Backand) {
 
   function unauthorized() {

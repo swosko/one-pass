@@ -1,9 +1,18 @@
 <ion-view view-title="Accounts">
-  <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="acct in accounts" href="#/app/accounts/{{acct.Id}}">
-        {{acct.Name}}
-      </ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <div class="">
+            <label class="item item-input">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" placeholder="Search" ng-model="query">
+            </label>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="acct in accounts | filter:query | orderBy:'Name'" href="#/app/accounts/{{acct.Id}}">
+                <h2>{{acct.Name}}<span ng-if="!acct.Name">&nbsp;</span></h2>
+                <p>{{acct.UserName}}/{{acct.Password | mask}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>
+
+
